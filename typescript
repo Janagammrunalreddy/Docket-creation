@@ -1,0 +1,22 @@
+const purchaseOrdersData: { [key: string]: string[] } = ${purchaseOrders};
+
+// Populate purchase order dropdown based on selected supplier
+const supplierDropdown = document.getElementById('supplier') as HTMLSelectElement;
+const purchaseOrderDropdown = document.getElementById('purchaseOrder') as HTMLSelectElement;
+
+supplierDropdown.addEventListener('change', () => {
+    const selectedSupplier = supplierDropdown.value;
+
+    // Clear existing options
+    purchaseOrderDropdown.innerHTML = '';
+
+    // Populate purchase order dropdown
+    if (purchaseOrdersData[selectedSupplier]) {
+        purchaseOrdersData[selectedSupplier].forEach((po) => {
+            const option = document.createElement('option');
+            option.value = po;
+            option.text = po;
+            purchaseOrderDropdown.add(option);
+        });
+    }
+});
